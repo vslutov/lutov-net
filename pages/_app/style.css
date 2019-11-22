@@ -1,0 +1,95 @@
+:root {
+  /* color schema */
+  --color-base03 :  #002b36;
+  --color-base02 :  #073642;
+  --color-base01 :  #586e75;
+  --color-base00 :  #657b83;
+  --color-base0  :  #839496;
+  --color-base1  :  #93a1a1;
+  --color-base2  :  #eee8d5;
+  --color-base3  :  #fdf6e3;
+  --color-yellow :  #b58900;
+  --color-orange :  #cb4b16;
+  --color-red    :  #dc322f;
+  --color-magenta:  #d33682;
+  --color-violet :  #6c71c4;
+  --color-blue   :  #268bd2;
+  --color-cyan   :  #2aa198;
+  --color-green  :  #859900;
+
+  --color-background : var(--color-base03);
+  --color-background-highlights : var(--color-base02);
+
+  --color-text : var(--color-base0);
+  --color-text-secondary : var(--color-base01);
+  --color-text-highlights : var(--color-base1);
+
+  /* breakpoints */
+  --breakpoint-md: 768px; /* only reference */
+
+  /* root element */
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-blue);
+}
+
+/* Fonts */
+/* normal */
+@font-face {
+  font-family: Kaffeesatz;
+  font-weight: normal;
+  font-variation-settings: "wght" 300;
+  font-display: swap;
+  src: url(/static/fonts/Kaffeesatz-cyrillic.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: Kaffeesatz;
+  font-weight: normal;
+  font-variation-settings: "wght" 300;
+  font-display: swap;
+  src: url(/static/fonts/Kaffeesatz-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: Kaffeesatz;
+  font-weight: normal;
+  font-variation-settings: "wght" 300;
+  font-display: swap;
+  src: url(/static/fonts/Kaffeesatz-latin.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: Kaffeesatz;
+  font-weight: bold;
+  font-variation-settings: "wght" 400;
+  font-display: swap;
+  src: url(/static/fonts/Kaffeesatz-cyrillic.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: Kaffeesatz;
+  font-weight: bold;
+  font-variation-settings: "wght" 400;
+  font-display: swap;
+  src: url(/static/fonts/Kaffeesatz-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: Kaffeesatz;
+  font-weight: bold;
+  font-variation-settings: "wght" 400;
+  font-display: swap;
+  src: url(/static/fonts/Kaffeesatz-latin.woff2) format('woff2');
+}
+
+:root {
+  font-family: Kaffeesatz, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: normal;
+}

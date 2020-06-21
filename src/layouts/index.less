@@ -1,0 +1,82 @@
+@import "~rsuite/lib/styles/themes/dark/index.less";
+@reset-import: false;
+
+@import "~normalize.css/normalize.css";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=PT+Sans+Caption:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@font-family-base: 'PT Sans', sans-serif;
+@font-family-mono: 'PT Mono', sans-serif;
+@headings-font-family: 'PT Sans Caption', sans-serif;
+
+code, pre, kbd {
+  font-family: @font-family-mono;
+}
+
+h1, h2, h3, h4, h5, h6, .rs-footer, .rs-header {
+  font-family: @headings-font-family;
+}
+
+// Colors
+@color-base03: #002b36;
+@color-base02: #073642;
+@color-base01: #586e75;
+@color-base00: #657b83;
+@color-base0: #839496;
+@color-base1: #93a1a1;
+@color-base2: #eee8d5;
+@color-base3: #fdf6e3;
+@color-yellow: #b58900;
+@color-orange: #cb4b16;
+@color-red: #dc322f;
+@color-magenta: #d33682;
+@color-violet: #6c71c4;
+@color-blue: #268bd2;
+@color-cyan: #2aa198;
+@color-green: #859900;
+
+@B000: @color-base1; // Hightlight text color
+@B050: @color-base0; // Default text color
+@B100: @color-base00;
+@B200: @color-base01; // Secondary text color
+@B300: @color-base01;
+@B400: @color-base01;
+@B500: @color-base01; // Disable text color
+@B600: mix(@color-base02, @color-base01, 66%); // Input, picker, nav frame line, list hover on, Chart line, Hover background color, divider
+@B700: mix(@color-base02, @color-base01, 33%); // Table border, basic button background color, model/drawer background color
+@B800: @color-base02; // Highlight background color
+@B900: @color-base03; // Body background color
+
+@base-color: @color-blue;
+
+body {
+  font-family: @font-family-base;
+  --text-highlight-color: @B000;
+  --text-secondary-color: @B200;
+}
+
+/* Links */
+a {
+  color: @link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+    text-decoration: @link-hover-decoration;
+  }
+
+  &:active {
+    color: @link-active-color;
+    text-decoration: @link-active-decoration;
+  }
+
+  &:focus {
+    .tab-focus();
+  }
+
+  &:visited {
+    color: @color-violet;
+  }
+}

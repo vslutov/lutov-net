@@ -1,0 +1,153 @@
+{
+  "name": "lutov-net",
+  "description": "Vladimir Liutov's personal blog",
+  "version": "1.0.0",
+  "author": "Vladimir Liutov <vs@lutov.net>",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vslutov/lutov-net.git"
+  },
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "rimraf public",
+    "format": "standardx --fix src/**/*.{ts,tsx}",
+    "lint": "standardx src/**/*.{ts,tsx}",
+    "start": "gatsby develop",
+    "test": "npm run type-check && npm run lint && jest --passWithNoTests",
+    "type-check": "tsc --pretty --noEmit"
+  },
+  "engines": {
+    "node": ">=12.18.0",
+    "npm": ">=6.14.5"
+  },
+  "dependencies": {
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "antd": "^4.18.2",
+    "babel-plugin-styled-components": "^2.0.2",
+    "gatsby": "^4.4.0",
+    "gatsby-image": "^3.11.0",
+    "gatsby-plugin-canonical-urls": "^4.4.0",
+    "gatsby-plugin-less": "^6.4.0",
+    "gatsby-plugin-mdx": "^3.4.0",
+    "gatsby-plugin-react-helmet": "^5.4.0",
+    "gatsby-plugin-sharp": "^4.4.0",
+    "gatsby-plugin-typescript": "^4.4.0",
+    "gatsby-remark-copy-linked-files": "^5.4.0",
+    "gatsby-remark-images": "^6.4.0",
+    "gatsby-remark-prismjs": "^6.4.0",
+    "gatsby-remark-responsive-iframe": "^5.4.0",
+    "gatsby-remark-smartypants": "^5.4.0",
+    "gatsby-source-filesystem": "^4.4.0",
+    "gatsby-transformer-json": "^4.4.0",
+    "gatsby-transformer-sharp": "^4.4.0",
+    "less": "^4.1.2",
+    "normalize.css": "^8.0.1",
+    "prism-themes": "^1.9.0",
+    "prismjs": "^1.25.0",
+    "react": "^17.0.2",
+    "react-bytesize-icons": "^0.12.2",
+    "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
+    "rsuite": "^5.4.3",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.3.0",
+    "@types/enzyme": "^3.10.11",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.7",
+    "@types/react": "^17.0.38",
+    "@types/react-bytesize-icons": "^0.12.2",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-helmet": "^6.1.5",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint-plugin-jest": "^25.3.4",
+    "husky": "^7.0.4",
+    "jest": "^27.4.5",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
+    "rimraf": "^3.0.2",
+    "standardx": "^7.0.0",
+    "ts-jest": "^27.1.2"
+  },
+  "standardx": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "ignore": [
+      "/out",
+      "/.next",
+      "/node_modules"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+      "quotes": [
+        "error",
+        "double",
+        {
+          "avoidEscape": true
+        }
+      ],
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error",
+      "no-use-before-define": "off",
+      "@typescript-eslint/no-use-before-define": [
+        "error"
+      ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && npm run build"
+    }
+  },
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "target": "ES2019",
+          "lib": [
+            "ES2019"
+          ]
+        }
+      }
+    },
+    "transform": {
+      ".(ts|tsx)": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/public/",
+      "/templates/",
+      "/.cache"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov",
+      "text",
+      "html"
+    ],
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
+    "testEnvironment": "enzyme"
+  }
+}

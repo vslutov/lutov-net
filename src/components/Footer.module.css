@@ -1,0 +1,10 @@
+.footer {
+  color: var(--secondary-text);
+  padding-top: .25rem;
+}
+
+@media screen and (min-width: 768px) {
+  .right {
+    float: right;
+  }
+}

@@ -1,0 +1,19 @@
+.article {
+  margin-bottom: 3rem;
+  border-radius: 0.5rem;
+}
+
+.articleFooter {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 720px) {
+  .articleFooter {
+    flex-direction: row;
+  }
+
+  .articleFooterLink {
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,30 @@
+.nav {
+  display: grid;
+  gap: 1rem 1rem;
+}
+
+.navItemEmpty {
+  display: none;
+}
+
+@media screen and (min-width: 720px) {
+  .nav {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .navItemEmpty {
+    display: block;
+  }
+
+  .navItemLeft {
+    text-align: left;
+  }
+
+  .navItemCenter {
+    text-align: center;
+  }
+
+  .navItemRight {
+    text-align: right;
+  }
+}

@@ -1,0 +1,64 @@
+.header {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-family: var(--font-heading);
+}
+
+.logo, .logo:visited {
+  font-size: 1.5rem;
+  color: var(--color-text-highlight);
+}
+
+.headerLink, .headerLink:visited {
+  color: var(--color-blue);
+}
+
+.menu {
+  width: 100%;
+
+  display: none;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.menu.menuOpened {
+  display: flex;
+}
+
+.menuButton {
+  flex-grow: 1;
+  text-align: right;
+}
+
+.button {
+  background-color: var(--color-bg-highlight);
+  color: var(--color-text-secondary);
+  border: 2px solid var(--color-text-secondary);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 720px) {
+  .menu {
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    flex-grow: 1;
+  }
+
+  .menuButton {
+    display: none;
+  }
+
+  .themeButton {
+    flex-grow: 1;
+    text-align: right;
+  }
+}
+
+

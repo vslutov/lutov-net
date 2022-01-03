@@ -1,0 +1,133 @@
+---
+postedAt: "2022-02-23T17:00+0300"
+lastmod: "2022-02-23T18:00+0300"
+---
+# CI без серверов
+
+Travis-ci перестал работать в
+[lutov.net](https://github.com/vslutov/lutov-net).
+Разберемся с этим раз и навсегда.
+
+<div id="toc"/>
+
+```toc
+# This code block gets replaced with the TOC
+```
+
+## Что такое CI?
+
+Continuous integration -- подход, при котором для каждого коммита
+нужно выполняются заданные действия: сборка и тесты.
+Continuous delivery -- сборка каждого коммита автоматически публикуется.
+GitHub pages -- сервис для хостинга статических сайтов.
+
+Lutov.net использует CD для публикации блога на GitHub pages.
+
+После каждого коммита CI сервер автоматически выполняет CI или CD скрипты.
+Travis -- популярный CI сервер.
+
+
+## Проблема
+
+Компания Travis поменяла правила использования сервиса: теперь требуется
+прикрепить к аккаунту банковскую карту, даже если используются только
+бесплатные функции.
+В прошлом компания уже меняла правила использования.
+Travis объединила два сайта https://travis.org и https://travis.com в один.
+
+Откажемся от использования стороннего CI сервера, чтобы не зависеть от
+решений компании.
+
+## Решение
+
+Добавить проверку, сборку или публикацию в git hook `pre-push`.
+Для этого добавим в файл `.git/hooks/pre-push` нужные команды.
+
+### Хуки
+
+[Документация](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+описывает хуки на стороне клиента и сервера.
+Хуки влияют на работу гита: например, хук `commit-msg` изменяет
+содержание сообщения коммита.
+
+Хук `post-push` отсутствует, так как после пуша гит заканчивает работу
+и на него повлиять уже нельзя.
+Если хотите выполнить команду после пуша, напишите скрипт `publish.sh`.
+
+```shell
+# publish.sh
+git push
+actual command
+```
+
+### Клонирование на другую машину
+
+Git создает файл `.git/hooks/pre-push` после клонирования.
+Записываем сюда CD скрипт.
+
+### git-lfs
+
+Если в проекте используется git-lfs, не забудьте вызвать хук для него
+в `pre-push`, иначе lfs-файлы не загрузятся.
+
+### Node
+
+Если проект использует node.js, то используйте пакет
+[husky](https://typicode.github.io/husky). Husky меняет папку, в которой
+git ищет хуки с `.git/hooks` на `.husky`, таким образом скрипты хранятся
+вместе с исходниками. Так выглядит `.husky/pre-push` в
+lutov.net:
+
+```shell
+command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting .git/hooks/pre-push.\n"; exit 2; }
+git lfs pre-push "$@"
+
+npm run spellcheck
+npm run publish
+```
+
+Сначала обрабатываем `git-lfs`, затем проверяем орфографию
+и публикуем.
+
+### Публикация в GitHub pages
+
+Для публикации в GitHub pages воспользуемся скриптом:
+
+```shell
+set -ex
+
+TARGET=$(git remote get-url origin)
+COMMIT_ID=$(git show --oneline -s)
+
+git status # Проверяем, что нет незакоммиченных изменений
+
+# Эта секция gatsby-specific, главное -- заполнить папку
+# public/public
+npm run clean # удалить старую сборку
+git clone . public # С этого момента в соседней вкладке редактируем
+                   # рабочую копию
+cd public
+npm ci # установка зависимостей
+npm run build # Создать новую сборку сайта в папке public/public
+
+cd public
+git init # создать git репозиторий
+git add -A # и наполнить его
+git commit -m "push to gh-pages for ${COMMIT_ID}" # создать коммит
+git push "${TARGET}" HEAD:gh-pages --force # отправить его в gh-pages
+```
+
+Публикация длится долго, поэтому копируем проект во временную
+папку public, а с оригиналом можем работать во время публикации.
+
+### Чистое окружение
+
+Преимущество CI сервера -- сборка всегда происходит в чистой виртуальной
+системе без установленных пакетов.
+Чтобы повторить это на локальной машине, воспользуйтесь контейнерами:
+[podman](https://podman.io/) и [buildah](https://buildah.io/).
+
+## Заключение
+
+Выполняем CI или CD скрипты при создании и загрузке коммитов в репозиторий
+через git хуки.

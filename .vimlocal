@@ -1,0 +1,9 @@
+augroup templates
+  au!
+  " read in template files
+  autocmd BufNewFile *.* silent! exe '0r templates/skeleton.'.expand("<afile>:e")
+  autocmd BufNewFile * %s/\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]/\=eval(submatch(1))/ge
+  autocmd BufNewFile * exe "normal 0Gddk"
+  autocmd BufWritePre *.mdx %s/^lastmod: "[0-9T:+-]\+"$/\="lastmod: \"" . strftime("%Y-%m-%dT%R%z") . "\""/ge|norm!``
+  autocmd CursorHold *.mdx silent write
+augroup END

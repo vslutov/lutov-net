@@ -1,0 +1,108 @@
+:root {
+  /* Fonts */
+  --font: serif;
+  --font-mono: monospace;
+  --font-heading: sans-serif;
+  font-family: var(--font);
+  font-size: 12pt;
+  line-height: 1.7;
+  text-size-adjust: none;
+
+  /* Colors */
+  --color-base03: #002b36;
+  --color-base02: #073642;
+  --color-base01: #586e75;
+  --color-base00: #657b83;
+  --color-base0: #839496;
+  --color-base1: #93a1a1;
+  --color-base2: #eee8d5;
+  --color-base3: #fdf6e3;
+  --color-yellow: #b58900;
+  --color-orange: #cb4b16;
+  --color-red: #dc322f;
+  --color-magenta: #d33682;
+  --color-violet: #6c71c4;
+  --color-blue: #268bd2;
+  --color-cyan: #2aa198;
+  --color-green: #859900;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-highlight);
+}
+
+
+/* Links */
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--color-violet);
+}
+
+a:hover, a:focus, a:active {
+  color: var(--color-cyan);
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul, ol {
+  padding-left: 1em;
+}
+
+/* Gatsby image */
+.gatsby-resp-image-figure {
+  margin: 1rem 0;
+}
+
+@media screen and (min-width: 720px) {
+  .gatsby-resp-image-figure {
+    margin: 1rem;
+  }
+}
+
+/* PrismJS */
+.gatsby-highlight-code-line {
+  background-color: var(--color-bg);
+  display: block;
+  margin-right: -1em;
+  margin-left: -1em;
+  padding-right: 1em;
+  padding-left: 0.75em;
+  border-left: 0.25em solid var(--color-text-highlight);
+}
+
+.gatsby-highlight {
+  background-color: var(--color-bg-highlight);
+  border-radius: 0.5rem;
+  margin: 0.5em 0;
+  padding: 1em;
+  overflow: auto;
+}
+
+.gatsby-highlight pre[class*="language-"] {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  overflow: initial;
+  float: left;
+  min-width: 100%;
+}
+
+.gatsby-highlight pre[class*="language-"].line-numbers {
+  padding-left: 2.8em;
+}
